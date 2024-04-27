@@ -17,6 +17,6 @@ public class Homecontroller {
 
     @GetMapping("/liver")
     public String getNickname() {
-        return "My name is liver";
+        return "My name is Liver";
     }
 }
