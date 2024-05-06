@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.appledeveloperacademy.soongies.SoongiesApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-04-30T09:57:36" hostname="10-141-55-51.0200.pos.kr.iosda.org" time="0.351">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.appledeveloperacademy.soongies.SoongiesApplicationTests" time="0.351"/>
+  <system-out><![CDATA[18:57:36.248 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.appledeveloperacademy.soongies.SoongiesApplicationTests]: SoongiesApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:57:36.278 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.appledeveloperacademy.soongies.SoongiesApplication for test class com.appledeveloperacademy.soongies.SoongiesApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2024-04-30T18:57:36.391+09:00  INFO 39423 --- [soongies] [    Test worker] c.a.soongies.SoongiesApplicationTests    : Starting SoongiesApplicationTests using Java 17.0.8.1 with PID 39423 (started by kyungsoolee in /Users/kyungsoolee/Git Repositories/Apple Developer Academy @ POSTECH/MC2/MC2-Team14-Soongies-Server)
+2024-04-30T18:57:36.391+09:00  INFO 39423 --- [soongies] [    Test worker] c.a.soongies.SoongiesApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2024-04-30T18:57:36.709+09:00  INFO 39423 --- [soongies] [    Test worker] c.a.soongies.SoongiesApplicationTests    : Started SoongiesApplicationTests in 0.389 seconds (process running for 0.735)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
