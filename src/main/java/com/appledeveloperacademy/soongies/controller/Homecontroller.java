@@ -2,6 +2,8 @@ package com.appledeveloperacademy.soongies.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,7 +18,15 @@ public class Homecontroller {
     }
 
     @GetMapping("/liver")
-    public String getNickname() {
+    public String getLiverNickname() {
         return "My name is Liver";
     }
+
+    @PostMapping("/")
+    public String getNickname(
+            @RequestParam String nickname
+    ) {
+        return "My name is" + nickname;
+    }
+
 }
