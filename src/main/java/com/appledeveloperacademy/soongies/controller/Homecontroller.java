@@ -22,11 +22,16 @@ public class Homecontroller {
         return "My name is Liver";
     }
 
-    @PostMapping("/getNickname")
+    @GetMapping("/kaya")
+    public String getKayaNickname() {
+        return "My name is Kaya";
+    }
+
+    @GetMapping("/getNickname")
     public String getNickname(
             @RequestParam(name = "nickname") String nickname
     ) {
-        return "My name is" + nickname;
+        return "My name is " + nickname;
     }
 
 }
