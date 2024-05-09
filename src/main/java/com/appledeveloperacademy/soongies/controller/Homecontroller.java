@@ -22,9 +22,9 @@ public class Homecontroller {
         return "My name is Liver";
     }
 
-    @PostMapping("/")
+    @PostMapping("/getNickname")
     public String getNickname(
-            @RequestParam String nickname
+            @RequestParam(value = "nickname") String nickname
     ) {
         return "My name is" + nickname;
     }
