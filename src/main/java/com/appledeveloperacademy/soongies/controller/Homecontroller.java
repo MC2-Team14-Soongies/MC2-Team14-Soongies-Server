@@ -24,7 +24,7 @@ public class Homecontroller {
 
     @PostMapping("/getNickname")
     public String getNickname(
-            @RequestParam(value = "nickname") String nickname
+            @RequestParam(name = "nickname") String nickname
     ) {
         return "My name is" + nickname;
     }
