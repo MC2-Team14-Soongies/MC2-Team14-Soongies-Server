@@ -2,6 +2,7 @@ package com.appledeveloperacademy.soongies.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,12 @@ public class HomeController {
 
     @Value("${app.version:1.0.0}")
     String version;
+
+    @GetMapping("/version")
+    public String version() {
+        return "Hello CI/CD! version: " + version;
+    }
+
 
     @GetMapping("/")
     public String home() {
