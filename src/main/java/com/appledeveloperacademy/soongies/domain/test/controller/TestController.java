@@ -50,8 +50,8 @@ public class TestController {
 
     @Operation(summary = "BaseResponse 테스트 API", description = "BaseResponse 테스트 API입니다.")
     @GetMapping("/base-response-test")
-    public BaseResponse<TestResponse.BaseResponseTest> getBaseResponseTest() {
-        TestResponse.BaseResponseTest baseResponseTest = TestResponse.BaseResponseTest.builder()
+    public BaseResponse<TestResponse.TestBaseResponse> getBaseResponseTest() {
+        TestResponse.TestBaseResponse baseResponseTest = TestResponse.TestBaseResponse.builder()
                 .testString("TEST")
                 .build();
         return BaseResponse.onSuccess(baseResponseTest);

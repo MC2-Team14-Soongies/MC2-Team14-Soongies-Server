@@ -7,7 +7,7 @@ public class TestResponse {
 
     @Getter
     @Builder
-    public static class BaseResponseTest {
+    public static class TestBaseResponse {
         private String testString;
     }
 }
