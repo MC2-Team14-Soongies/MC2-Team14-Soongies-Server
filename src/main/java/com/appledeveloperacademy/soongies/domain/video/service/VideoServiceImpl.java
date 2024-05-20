@@ -18,7 +18,15 @@ public class VideoServiceImpl implements VideoService {
         youtubeDataApiV3SearchListResponse.getItems().forEach(item -> {
             // TODO: 각 비디오 ID 값에 대한 상세 정보 조회 및 리스트 (조회순) 정렬
             System.out.println(item.getId().getVideoId());
+            String videoId = item.getId().getVideoId();
+
+            YoutubeDataApiV3Response.YoutubeDataApiV3VideoGetDetailResponse response = youtubeClient.getVideoDetail(videoId, "snippet,statistics", "AIzaSyDFda8BJA1V3eqLeVqnZww7e-GaXiLHvns");
+            response.getItems().forEach(i -> {
+                // TODO: Thumbnail이 null일 때 처리, 조회수 안불러와지는 오류 수정
+                System.out.println(response.getItems().getFirst().getSnippet().getThumbnails().getMaxres().getUrl());
+            });
         });
+
         return null;
     }
 }

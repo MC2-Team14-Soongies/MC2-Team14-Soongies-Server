@@ -28,8 +28,10 @@ public interface YoutubeClient {
             @RequestParam("key") String key
     );
 
-    @PostMapping(value = "/token")
-    public GoogleOauthResponse.GoogleOauthTokenResponse getTokenInfo(
-            @RequestBody GoogleOauthRequest.GoogleOauthTokenRequest request
+    @GetMapping(value = "/videos")
+    public YoutubeDataApiV3Response.YoutubeDataApiV3VideoGetDetailResponse getVideoDetail(
+            @RequestParam("id") String id,
+            @RequestParam("part") String part,
+            @RequestParam("key") String key
     );
 }
