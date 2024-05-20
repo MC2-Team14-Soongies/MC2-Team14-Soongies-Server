@@ -1,18 +1,22 @@
 package com.appledeveloperacademy.soongies.domain.test.controller;
 
+import com.appledeveloperacademy.soongies.config.security.oauth.google.dto.GoogleOauthRequest;
+import com.appledeveloperacademy.soongies.config.security.oauth.google.dto.GoogleOauthResponse;
 import com.appledeveloperacademy.soongies.domain.test.dto.TestResponse;
+import com.appledeveloperacademy.soongies.domain.test.service.TestService;
 import com.appledeveloperacademy.soongies.global.common.BaseResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @Tag(name = "swagger setting test", description = "스웨거 테스트")
 @RestController
 @RequiredArgsConstructor
 public class TestController {
+
+    private final TestService testService;
 
     @Value("${app.version:1.0.0}")
     String version;
@@ -55,6 +59,14 @@ public class TestController {
                 .testString("TEST")
                 .build();
         return BaseResponse.onSuccess(baseResponseTest);
+    }
+
+    @Operation(summary = "OepnFeign 테스트 API", description = "OpenFeign 테스트 API입니다.")
+    @PostMapping("/open-feign-test")
+    public BaseResponse<GoogleOauthResponse.GoogleDeviceCodeResponse> getGoogleOauth(
+            @RequestBody GoogleOauthRequest.GoogleDeviceCodeRequest request) {
+
+        return BaseResponse.onSuccess(testService.testFeign(request));
     }
 
 }
