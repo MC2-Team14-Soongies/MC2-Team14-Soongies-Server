@@ -7,7 +7,7 @@ import com.appledeveloperacademy.soongies.domain.test.dto.TestResponse;
 
 public interface TestService {
 
-    GoogleOauthResponse.GoogleDeviceCodeResponse testFeign(GoogleOauthRequest.GoogleDeviceCodeRequest request);
+    GoogleOauthResponse.GoogleOauthDeviceCodeResponse testFeign(GoogleOauthRequest.GoogleOauthDeviceCodeRequest request);
 
 
     TestResponse.TestAnnaResponse getNickname(TestRequest.TestNicknameRequest request);

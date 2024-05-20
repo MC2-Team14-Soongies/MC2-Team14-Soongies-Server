@@ -8,8 +8,6 @@ import com.appledeveloperacademy.soongies.domain.test.dto.TestResponse;
 import com.appledeveloperacademy.soongies.domain.test.mapper.TestMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
 @Service
 @RequiredArgsConstructor
@@ -19,9 +17,9 @@ public class TestServiceImpl implements TestService {
     private final TestMapper testMapper;
 
     @Override
-    public GoogleOauthResponse.GoogleDeviceCodeResponse testFeign(GoogleOauthRequest.GoogleDeviceCodeRequest request) {
+    public GoogleOauthResponse.GoogleOauthDeviceCodeResponse testFeign(GoogleOauthRequest.GoogleOauthDeviceCodeRequest request) {
         System.out.println(request);
-        return googleClient.getUserCode(request);
+        return googleClient.getDeviceInfo(request);
     }
 
     @Override

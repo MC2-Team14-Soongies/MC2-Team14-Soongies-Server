@@ -4,5 +4,7 @@ import com.appledeveloperacademy.soongies.config.security.oauth.google.dto.Googl
 import com.appledeveloperacademy.soongies.domain.member.dto.MemberResponse;
 
 public interface MemberService {
-    MemberResponse.MemberGoogleOauthUrl getGoogleOauthUrl(GoogleOauthRequest.GoogleDeviceCodeRequest request);
+    MemberResponse.MemberGoogleOauthUrlResponse getGoogleOauthUrl(GoogleOauthRequest.GoogleOauthDeviceCodeRequest request);
+
+    MemberResponse.MemberGoogleOauthTokenResponse getGoogleOauthToken(GoogleOauthRequest.GoogleOauthTokenRequest request);
 }

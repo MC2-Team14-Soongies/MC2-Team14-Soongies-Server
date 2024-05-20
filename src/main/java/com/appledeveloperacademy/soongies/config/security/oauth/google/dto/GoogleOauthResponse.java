@@ -9,12 +9,23 @@ public class GoogleOauthResponse {
 
     @Getter
     @Builder
-//    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
-    public static class GoogleDeviceCodeResponse {
-        private String device_code;
-        private String user_code;
-        private int expires_in;
+    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
+    public static class GoogleOauthDeviceCodeResponse {
+        private String deviceCode;
+        private String userCode;
+        private int expiresIn;
         private int interval;
-        private String verification_url;
+        private String verificationUrl;
+    }
+
+    @Getter
+    @Builder
+    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
+    public static class GoogleOauthTokenResponse {
+        private String accessToken;
+        private Long expiresIn;
+        private String refreshToken;
+        private String scope;
+        private String tokenType;
     }
 }

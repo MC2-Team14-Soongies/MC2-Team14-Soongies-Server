@@ -74,8 +74,8 @@ public class TestController {
 
     @Operation(summary = "OepnFeign 테스트 API", description = "OpenFeign 테스트 API입니다.")
     @PostMapping("/open-feign-test")
-    public BaseResponse<GoogleOauthResponse.GoogleDeviceCodeResponse> getGoogleOauth(
-            @RequestBody GoogleOauthRequest.GoogleDeviceCodeRequest request) {
+    public BaseResponse<GoogleOauthResponse.GoogleOauthDeviceCodeResponse> getGoogleOauth(
+            @RequestBody GoogleOauthRequest.GoogleOauthDeviceCodeRequest request) {
 
         return BaseResponse.onSuccess(testService.testFeign(request));
     }
