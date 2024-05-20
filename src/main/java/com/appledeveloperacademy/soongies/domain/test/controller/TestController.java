@@ -2,6 +2,7 @@ package com.appledeveloperacademy.soongies.domain.test.controller;
 
 import com.appledeveloperacademy.soongies.config.security.oauth.google.dto.GoogleOauthRequest;
 import com.appledeveloperacademy.soongies.config.security.oauth.google.dto.GoogleOauthResponse;
+import com.appledeveloperacademy.soongies.domain.test.dto.TestRequest;
 import com.appledeveloperacademy.soongies.domain.test.dto.TestResponse;
 import com.appledeveloperacademy.soongies.domain.test.service.TestService;
 import com.appledeveloperacademy.soongies.global.common.BaseResponse;
@@ -43,6 +44,16 @@ public class TestController {
     public String getKayaNickname() {
         return "My name is Kaya";
     }
+
+    @Operation(summary = "POST 닉네임 출력 테스트 API", description = "김카야 스프링 정복기")
+    @PostMapping("/post-nickname")
+    public BaseResponse<TestResponse.TestAnnaResponse> postNickname(
+            @RequestBody TestRequest.TestNicknameRequest request
+            ) {
+        return BaseResponse.onSuccess(testService.getNickname(request));
+    }
+
+
 
     @Operation(summary = "닉네임 입력/출력 테스트 API", description = "CI/CD 및 스웨거 확인용 API입니다.")
     @GetMapping("/getNickname")

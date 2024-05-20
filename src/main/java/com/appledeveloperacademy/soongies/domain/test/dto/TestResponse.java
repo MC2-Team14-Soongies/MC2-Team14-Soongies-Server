@@ -10,4 +10,10 @@ public class TestResponse {
     public static class TestBaseResponse {
         private String testString;
     }
+
+    @Getter
+    @Builder
+    public static class TestAnnaResponse {
+        private String nickname;
+    }
 }
