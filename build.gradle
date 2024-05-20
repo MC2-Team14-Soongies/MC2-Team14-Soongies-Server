@@ -34,8 +34,9 @@ dependencies {
 	// swagger
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 
-	// OpenFeign
+	// OpenFeign (스프링, 스프링 클라우드랑 꼭 버전 확인해서 맞추기) -> https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2023.0-Release-Notes
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.1'
+
 
 }
 

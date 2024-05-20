@@ -20,12 +20,6 @@ import java.util.Map;
 )
 public interface GoogleClient {
 
-//    @PostMapping(value = "/device/code", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-//    public GoogleOauthResponse.GoogleDeviceCodeResponse getUserCode(
-//            @RequestParam("client_id") String clientId,
-//            @RequestParam("scope") String scope
-//    );
-
     @PostMapping(value = "/device/code")
     public GoogleOauthResponse.GoogleDeviceCodeResponse getUserCode(
             @RequestBody GoogleOauthRequest.GoogleDeviceCodeRequest request

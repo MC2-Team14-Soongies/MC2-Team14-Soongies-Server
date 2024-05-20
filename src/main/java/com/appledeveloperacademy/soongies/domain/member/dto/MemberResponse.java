@@ -7,7 +7,7 @@ public class MemberResponse {
 
     @Getter
     @Builder
-    public static class getGoogleOauthUrl {
-        private String device_code;
+    public static class MemberGoogleOauthUrl {
+        private String googleOauthUrl;
     }
 }
