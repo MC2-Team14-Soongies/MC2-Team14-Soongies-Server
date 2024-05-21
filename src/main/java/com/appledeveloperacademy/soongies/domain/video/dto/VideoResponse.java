@@ -20,6 +20,7 @@ public class VideoResponse {
         private String title;
         private String artist;
         private String duration;
+        private Long viewCount;
     }
 
 }

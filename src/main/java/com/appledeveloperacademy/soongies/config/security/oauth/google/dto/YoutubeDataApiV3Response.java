@@ -72,10 +72,12 @@ public class YoutubeDataApiV3Response {
     public static class GetVideoDetailItemSnippet {
         private String title;
         private GetVideoDetailItemSnippetThumbnails thumbnails;
+        private String channelTitle;
     }
 
     @Getter
-    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     @Jacksonized
     public static class GetVideoDetailItemSnippetThumbnails {
         private GetVideoDetailItemSnippetThumbnailsMaxres maxres;
@@ -83,6 +85,8 @@ public class YoutubeDataApiV3Response {
 
     @Getter
     @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class GetVideoDetailItemSnippetThumbnailsMaxres {
         private String url;
         private int width;
