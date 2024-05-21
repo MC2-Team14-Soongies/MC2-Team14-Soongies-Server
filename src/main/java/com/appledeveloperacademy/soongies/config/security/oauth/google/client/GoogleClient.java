@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(
-        name = "googleOauthClient",
+        name = "GoogleOauthClient",
         url = "https://oauth2.googleapis.com",
         configuration = FeignConfig.class
 )
