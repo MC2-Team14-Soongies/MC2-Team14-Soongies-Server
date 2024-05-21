@@ -17,8 +17,8 @@ public class VideoResponse {
     @Builder
     public static class VideoInfo {
         private String thumbnail;
-        private String name;
-        private String singer;
+        private String title;
+        private String artist;
         private String duration;
     }
 

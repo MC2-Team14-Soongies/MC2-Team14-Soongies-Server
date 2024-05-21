@@ -64,6 +64,7 @@ public class YoutubeDataApiV3Response {
         private String id;
         private GetVideoDetailItemSnippet snippet;
         private GetVideoDetailItemStatics statistics;
+        private GetVideoDetailItemContentDetails contentDetails;
     }
 
     @Getter
@@ -104,6 +105,14 @@ public class YoutubeDataApiV3Response {
 
         @JsonProperty("commentCount")
         private String commentCount;
+    }
+
+    @Getter
+    @Builder
+    @Jacksonized
+    public static class GetVideoDetailItemContentDetails {
+        @JsonProperty("duration")
+        private String duration;
     }
 
 
