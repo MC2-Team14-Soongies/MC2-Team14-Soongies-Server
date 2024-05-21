@@ -78,6 +78,7 @@ public class YoutubeDataApiV3Response {
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
+    @Builder
     @Jacksonized
     public static class GetVideoDetailItemSnippetThumbnails {
         private GetVideoDetailItemSnippetThumbnailsMaxres maxres;

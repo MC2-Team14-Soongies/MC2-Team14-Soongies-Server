@@ -39,7 +39,7 @@ public class VideoServiceImpl implements VideoService {
             // TODO: 각 비디오 ID 값에 대한 상세 정보 조회 및 리스트 (조회순) 정렬
             String videoId = searchListItem.getId().getVideoId();
             YoutubeDataApiV3Response.YoutubeDataApiV3VideoGetDetailResponse videoDetail = youtubeClient.getVideoDetail(videoId, "snippet,statistics,contentDetails", key);
-            YoutubeDataApiV3Response.GetVideoDetailItem videoDetailItem = videoDetail.getItems().getFirst();
+            YoutubeDataApiV3Response.GetVideoDetailItem videoDetailItem = videoDetail.getItems().get(0);
 //                // TODO: Thumbnail이 null일 때 처리, 조회수 안불러와지는 오류 수정
             try {
                 String json = objectMapper.writeValueAsString(videoDetail);
