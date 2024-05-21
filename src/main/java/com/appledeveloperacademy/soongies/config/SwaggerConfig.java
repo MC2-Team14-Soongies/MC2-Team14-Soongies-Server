@@ -5,8 +5,11 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 @Configuration
 public class SwaggerConfig {
@@ -27,10 +30,17 @@ public class SwaggerConfig {
                 .bearerFormat("JWT")
         );
 
+        List<Server> servers = List.of(
+                new Server().url("https://localhost:8080").description("Local development server"),
+                new Server().url("https://soongeez.shop").description("Development server")
+        );
+
         return new OpenAPI()
                 .info(info)
                 .addSecurityItem(securityRequirement)
-                .components(components);
+                .components(components)
+                .servers(servers);
+
     }
 
 }
