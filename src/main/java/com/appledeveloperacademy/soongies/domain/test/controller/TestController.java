@@ -39,6 +39,12 @@ public class TestController {
         return "My name is Liver";
     }
 
+    @Operation(summary = "루이 테스트 API", description = "CI/CD 및 스웨거 확인용 API입니다.")
+    @GetMapping("/louis")
+    public String getLouisNickname() {
+        return "My name is Louis";
+    }
+
     @Operation(summary = "카야 출력 테스트 API", description = "CI/CD 및 스웨거 확인용 API입니다.")
     @GetMapping("/kaya")
     public String getKayaNickname() {
