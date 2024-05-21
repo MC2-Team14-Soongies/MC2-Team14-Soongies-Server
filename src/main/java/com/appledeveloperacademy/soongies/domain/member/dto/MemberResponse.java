@@ -9,6 +9,7 @@ public class MemberResponse {
     @Builder
     public static class MemberGoogleOauthUrlResponse {
         private String googleOauthUrl;
+        private String code;
     }
 
     public static class MemberGoogleOauthTokenResponse {

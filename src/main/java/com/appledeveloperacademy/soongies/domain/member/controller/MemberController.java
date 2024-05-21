@@ -1,6 +1,7 @@
 package com.appledeveloperacademy.soongies.domain.member.controller;
 
 import com.appledeveloperacademy.soongies.config.security.oauth.google.dto.GoogleOauthRequest;
+import com.appledeveloperacademy.soongies.domain.member.dto.MemberRequest;
 import com.appledeveloperacademy.soongies.domain.member.dto.MemberResponse;
 import com.appledeveloperacademy.soongies.domain.member.service.MemberService;
 import com.appledeveloperacademy.soongies.global.common.BaseResponse;
@@ -28,8 +29,8 @@ public class MemberController {
 
     @Operation(summary = "구글 oauth.json 요청 API", description = "구글 Oauth.json 파일 조회 API입니다.")
     @PostMapping("google-oauth-token")
-    public BaseResponse<MemberResponse.MemberGoogleOauthTokenResponse> getGoogleOauthJson(
-            @RequestBody GoogleOauthRequest.GoogleOauthTokenRequest request
+    public BaseResponse<MemberResponse.MemberGoogleOauthTokenResponse> getGoogleOauthInfo(
+            @RequestBody MemberRequest.MemberGetGoogleOauthInfoRequest request
     ) {
         return BaseResponse.onSuccess(memberService.getGoogleOauthToken(request));
     }

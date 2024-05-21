@@ -5,9 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MemberMapper {
-    public MemberResponse.MemberGoogleOauthUrlResponse toMemberGoogleOauthUrl(String googleOauthUrl) {
+    public MemberResponse.MemberGoogleOauthUrlResponse toMemberGoogleOauthUrl(String googleOauthUrl, String deviceCode) {
         return MemberResponse.MemberGoogleOauthUrlResponse.builder()
                 .googleOauthUrl(googleOauthUrl)
+                .code(deviceCode)
                 .build();
     }
 
