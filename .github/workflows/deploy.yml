@@ -65,3 +65,10 @@ jobs:
           --deployment-config-name CodeDeployDefault.AllAtOnce \
           --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
           --s3-location bucket=$S3_BUCKET_NAME,key=$GITHUB_SHA.zip,bundleType=zip
+
+    # (7) copy keystore.p12
+    - name: Copy keystore.p12
+      run: |
+        cd ./src/main/resources
+        touch ./keystore.p12
+        echo "${{ secrets.KEYSTORE }}" | base64 --decode > ./keystore.p12
