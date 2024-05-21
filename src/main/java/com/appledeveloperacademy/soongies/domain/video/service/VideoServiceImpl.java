@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -58,6 +59,9 @@ public class VideoServiceImpl implements VideoService {
             System.out.println(item.getViewCount());
         });
 
-        return videoMapper.toVideoSearchListResponse(videoInfoList);
+        return videoMapper.toVideoSearchListResponse(videoInfoList
+                .stream()
+                .sorted((v1, v2) -> v2.getViewCount().compareTo(v1.getViewCount()))
+                .collect(Collectors.toList()));
     }
 }
