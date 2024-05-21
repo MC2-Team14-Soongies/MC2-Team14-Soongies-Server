@@ -9,9 +9,9 @@ on:
 # 리전, 버킷 이름, CodeDeploy 앱 이름, CodeDeploy 배포 그룹 이름
 env:
   AWS_REGION: ap-northeast-2
-  S3_BUCKET_NAME: liver-github-actions-s3-bucket
-  CODE_DEPLOY_APPLICATION_NAME: soongies-codedeploy-application
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: soongies-codedeploy-deployment-group
+  S3_BUCKET_NAME: soongeez-s3-bucket
+  CODE_DEPLOY_APPLICATION_NAME: soongeez-codedeploy-application
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: soongeez-codedeploy-deployment-group
 
 permissions:
   contents: read
