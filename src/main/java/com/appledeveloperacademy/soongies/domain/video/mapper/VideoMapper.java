@@ -27,6 +27,7 @@ public class VideoMapper {
                 .map(YoutubeDataApiV3Response.GetVideoDetailItemSnippetThumbnailsMaxres::getUrl)
                 .orElse("default_thumbnail.jpg");
         return VideoResponse.VideoInfo.builder()
+                .videoId(item.getId())
                 .title(item.getSnippet().getTitle())
                 .artist(item.getSnippet().getChannelTitle())
                 .duration(item.getContentDetails().getDuration())

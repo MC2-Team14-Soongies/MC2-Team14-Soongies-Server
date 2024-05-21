@@ -16,6 +16,7 @@ public class VideoResponse {
     @Getter
     @Builder
     public static class VideoInfo {
+        private String videoId;
         private String thumbnail;
         private String title;
         private String artist;
