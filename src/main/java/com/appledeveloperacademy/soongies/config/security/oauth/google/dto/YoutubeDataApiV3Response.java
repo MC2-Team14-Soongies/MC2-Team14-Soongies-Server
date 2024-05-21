@@ -1,10 +1,9 @@
 package com.appledeveloperacademy.soongies.config.security.oauth.google.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import lombok.extern.jackson.Jacksonized;
 import org.springframework.core.annotation.MergedAnnotations;
 
@@ -16,7 +15,6 @@ public class YoutubeDataApiV3Response {
     @Getter
     @Builder
     @ToString
-    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class YoutubeDataApiV3SearchListResponse {
         private String kind;
         private String etag;
@@ -29,7 +27,6 @@ public class YoutubeDataApiV3Response {
 
     @Getter
     @Builder
-    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class SearchListPageInfo {
         private int totalResults;
         private int resultsPerPage;
@@ -37,7 +34,6 @@ public class YoutubeDataApiV3Response {
 
     @Getter
     @Builder
-    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class SearchListItem {
         private String kind;
         private String etag;
@@ -46,7 +42,6 @@ public class YoutubeDataApiV3Response {
 
     @Getter
     @Builder
-    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class IdInfo {
         private String kind;
         private String videoId;
@@ -55,7 +50,6 @@ public class YoutubeDataApiV3Response {
     // GetDetailResponse
     @Getter
     @Builder
-    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class YoutubeDataApiV3VideoGetDetailResponse {
         private String kind;
         private String etag;
@@ -64,7 +58,6 @@ public class YoutubeDataApiV3Response {
 
     @Getter
     @Builder
-    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class GetVideoDetailItem {
         private String kind;
         private String etag;
@@ -75,7 +68,6 @@ public class YoutubeDataApiV3Response {
 
     @Getter
     @Builder
-    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class GetVideoDetailItemSnippet {
         private String title;
         private GetVideoDetailItemSnippetThumbnails thumbnails;
@@ -84,14 +76,12 @@ public class YoutubeDataApiV3Response {
     @Getter
     @Builder
     @Jacksonized
-    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class GetVideoDetailItemSnippetThumbnails {
         private GetVideoDetailItemSnippetThumbnailsMaxres maxres;
     }
 
     @Getter
     @Builder
-    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class GetVideoDetailItemSnippetThumbnailsMaxres {
         private String url;
         private int width;
@@ -102,9 +92,18 @@ public class YoutubeDataApiV3Response {
     @Getter
     @Builder
     @Jacksonized
-    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class GetVideoDetailItemStatics {
+        @JsonProperty("viewCount")
         private String viewCount;
+
+        @JsonProperty("likeCount")
+        private String likeCount;
+
+        @JsonProperty("favoriteCount")
+        private String favoriteCount;
+
+        @JsonProperty("commentCount")
+        private String commentCount;
     }
 
 
