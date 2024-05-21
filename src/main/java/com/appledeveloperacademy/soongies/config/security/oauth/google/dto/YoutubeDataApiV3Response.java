@@ -119,6 +119,4 @@ public class YoutubeDataApiV3Response {
         @JsonProperty("duration")
         private String duration;
     }
-
-
 }
