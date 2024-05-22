@@ -9,6 +9,12 @@ public class VideoResponse {
 
     @Getter
     @Builder
+    public static class VideoCreatePlayListResponse {
+        private List<VideoInfo> videoInfoList;
+    }
+
+    @Getter
+    @Builder
     public static class VideoSearchListResponse {
         private List<VideoInfo> videoInfoList;
     }

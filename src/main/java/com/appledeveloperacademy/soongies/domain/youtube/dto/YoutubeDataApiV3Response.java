@@ -1,4 +1,4 @@
-package com.appledeveloperacademy.soongies.config.security.oauth.google.dto;
+package com.appledeveloperacademy.soongies.domain.youtube.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
