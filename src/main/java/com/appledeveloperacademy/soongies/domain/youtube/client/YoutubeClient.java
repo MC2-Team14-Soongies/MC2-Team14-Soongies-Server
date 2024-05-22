@@ -1,14 +1,9 @@
-package com.appledeveloperacademy.soongies.config.security.oauth.google.client;
+package com.appledeveloperacademy.soongies.domain.youtube.client;
 
 import com.appledeveloperacademy.soongies.config.FeignConfig;
-import com.appledeveloperacademy.soongies.config.security.oauth.google.dto.GoogleOauthRequest;
-import com.appledeveloperacademy.soongies.config.security.oauth.google.dto.GoogleOauthResponse;
-import com.appledeveloperacademy.soongies.config.security.oauth.google.dto.YoutubeDataApiV3Request;
-import com.appledeveloperacademy.soongies.config.security.oauth.google.dto.YoutubeDataApiV3Response;
+import com.appledeveloperacademy.soongies.domain.youtube.dto.YoutubeDataApiV3Response;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(
@@ -25,7 +20,8 @@ public interface YoutubeClient {
             @RequestParam("q") String q,
             @RequestParam("type") String type,
             @RequestParam("videoCategory") int videoCategory,
-            @RequestParam("key") String key
+            @RequestParam("key") String key,
+            @RequestParam("order") String order
     );
 
     @GetMapping(value = "/videos")

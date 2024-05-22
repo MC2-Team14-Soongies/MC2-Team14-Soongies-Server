@@ -1,16 +1,14 @@
 package com.appledeveloperacademy.soongies.domain.video.controller;
 
 import com.appledeveloperacademy.soongies.config.YoutubeConfig;
+import com.appledeveloperacademy.soongies.domain.video.dto.VideoRequest;
 import com.appledeveloperacademy.soongies.domain.video.dto.VideoResponse;
 import com.appledeveloperacademy.soongies.domain.video.service.VideoService;
 import com.appledeveloperacademy.soongies.global.common.BaseResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,12 +30,22 @@ public class VideoController {
             @RequestParam("q") String q
     ) {
         String part = "id";
-        int maxResults = 100;
+        int maxResults = 20;
         String type = "video";
         int videoCategory = 10;
         String key = youtubeConfig.getApiKey();
+        String order = "viewCount";
 
-        return BaseResponse.onSuccess(videoService.searchVideo(part, maxResults, q, type, videoCategory, key));
+        return BaseResponse.onSuccess(videoService.searchVideo(part, maxResults, q, type, videoCategory, key, order));
+    }
+
+    @Operation(summary = "플레이리스트 생성 API", description = "플레이리스트를 생성합니다.")
+    @PostMapping("/playlist")
+    private BaseResponse<VideoResponse.VideoCreatePlayListResponse> createPlayList(
+            @RequestBody VideoRequest.VideoCreatePlayListRequest request
+    ) {
+
+        return BaseResponse.onSuccess(videoService.createPlayList(request));
     }
 
 }
