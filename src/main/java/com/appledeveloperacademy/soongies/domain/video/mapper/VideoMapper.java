@@ -1,6 +1,6 @@
 package com.appledeveloperacademy.soongies.domain.video.mapper;
 
-import com.appledeveloperacademy.soongies.domain.youtube.dto.YoutubeDataApiV3Response;
+import com.appledeveloperacademy.soongies.domain.video.dto.VideoRequest;
 import com.appledeveloperacademy.soongies.domain.video.dto.VideoResponse;
 import com.appledeveloperacademy.soongies.domain.ytmusic.dto.YTMusicApiResponse;
 import org.springframework.stereotype.Component;
@@ -21,10 +21,16 @@ public class VideoMapper {
                 .build();
     }
 
-    public VideoResponse.VideoCreatePlayListResponse toVideoCreatePlayListResponse(Long playlistLength, List<VideoResponse.VideoInfo> videoInfoList) {
-        return VideoResponse.VideoCreatePlayListResponse.builder()
+    public VideoResponse.VideoCreatePlaylistResponse toVideoCreatePlayListResponse(Long playlistLength, List<VideoResponse.VideoInfo> videoInfoList) {
+        return VideoResponse.VideoCreatePlaylistResponse.builder()
                 .videoInfoList(videoInfoList)
                 .playlistLength(playlistLength)
+                .build();
+    }
+
+    public VideoResponse.VideoExportPlaylistResponse toVideoExportPlaylistResponse(YTMusicApiResponse.YTMusicAPIExportPlaylistResponse response) {
+        return VideoResponse.VideoExportPlaylistResponse.builder()
+                .playlistId(response.getPlaylistId())
                 .build();
     }
 
@@ -62,6 +68,18 @@ public class VideoMapper {
                 .duration(item.getVideoDetails().getLengthSeconds())
                 .thumbnail(thumbnailUrl)
                 .viewCount(Long.valueOf(item.getVideoDetails().getViewCount()))
+                .build();
+    }
+
+    public VideoResponse.VideoInfo toVideoInfo(VideoRequest.CreatePlaylistFinaleInfo finaleInfo) {
+
+        return VideoResponse.VideoInfo.builder()
+                .videoId(finaleInfo.getVideoId())
+                .title(finaleInfo.getTitle())
+                .artist(finaleInfo.getArtist())
+                .duration(finaleInfo.getLength().toString())
+                .thumbnail(finaleInfo.getThumbnail())
+                .viewCount(finaleInfo.getViewCount())
                 .build();
     }
 }

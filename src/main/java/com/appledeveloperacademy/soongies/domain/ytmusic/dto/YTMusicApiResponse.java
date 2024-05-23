@@ -53,4 +53,12 @@ public class YTMusicApiResponse {
         private Long height;
     }
 
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class YTMusicAPIExportPlaylistResponse {
+        @JsonProperty("playlistId")
+        private String playlistId;
+    }
+
 }

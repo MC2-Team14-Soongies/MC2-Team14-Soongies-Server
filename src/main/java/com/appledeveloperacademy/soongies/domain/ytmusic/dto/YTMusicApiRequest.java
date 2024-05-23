@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 public class YTMusicApiRequest {
 
     @Builder
@@ -13,5 +15,13 @@ public class YTMusicApiRequest {
     @Getter
     public static class YTMusicApiGetSongRequest {
         private String videoId;
+    }
+
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    public static class YTMusicAPiExportPlaylistRequest {
+        private List<String> videoList;
     }
 }
