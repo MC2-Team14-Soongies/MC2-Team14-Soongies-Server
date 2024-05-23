@@ -48,7 +48,7 @@ public class VideoController {
         return BaseResponse.onSuccess(videoService.createPlayList(request));
     }
 
-    @Operation(summary = "플레이리스트 들으러가기 API", description = "플레이리스트 들으러가기 API 입니다.")
+    @Operation(summary = "플레이리스트 내보내기 API", description = "플레이리스트 내보내기 API 입니다.")
     @PostMapping("/playlist/export")
     private BaseResponse<VideoResponse.VideoExportPlaylistResponse> exportPlaylist(
             @RequestBody VideoRequest.VideoExportPlaylistRequest request

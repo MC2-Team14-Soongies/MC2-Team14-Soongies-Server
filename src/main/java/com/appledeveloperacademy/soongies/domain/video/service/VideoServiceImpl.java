@@ -71,6 +71,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public VideoResponse.VideoCreatePlaylistResponse createPlayList(VideoRequest.VideoCreatePlaylistRequest request) {
+        System.out.println(request.getFinaleInfo().getViewCount());
 
         // 임시 리스트 생성
         List<VideoResponse.VideoInfo> videoInfoList = new ArrayList<>();
@@ -109,14 +110,17 @@ public class VideoServiceImpl implements VideoService {
             }
 
             Long videoLength = Long.parseLong(videoDetail.getVideoDetails().getLengthSeconds());
-            if(restTime - videoLength >= 0 && videoLength >= 120) {
-                restTime -= videoLength;
-                System.out.println("restTime : " + restTime);
-                System.out.println("videoLength : " + videoLength);
-                System.out.println("restTime - videoLength : " + (restTime - videoLength));
-                videoInfoList.add(videoMapper.toVideoInfo(videoDetail));
-                playlistLength += videoLength;
+            if(videoDetail.getVideoDetails().getVideoId() != request.getFinaleInfo().getVideoId()) {
+                if(restTime - videoLength >= 0 && videoLength >= 120) {
+                    restTime -= videoLength;
+                    System.out.println("restTime : " + restTime);
+                    System.out.println("videoLength : " + videoLength);
+                    System.out.println("restTime - videoLength : " + (restTime - videoLength));
+                    videoInfoList.add(videoMapper.toVideoInfo(videoDetail));
+                    playlistLength += videoLength;
+                }
             }
+
         };
 
         videoInfoList.add(videoMapper.toVideoInfo(request.getFinaleInfo()));
