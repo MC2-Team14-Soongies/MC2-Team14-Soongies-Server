@@ -56,9 +56,17 @@ public class YTMusicApiResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
-    public static class YTMusicAPIExportPlaylistResponse {
+    public static class YTMusicApiExportPlaylistResponse {
         @JsonProperty("playlistId")
         private String playlistId;
+    }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class YTMusicApiUpdateTokensResponse {
+        @JsonProperty("refreshToken")
+        private String refreshToken;
     }
 
 }

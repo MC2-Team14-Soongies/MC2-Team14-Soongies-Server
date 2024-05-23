@@ -1,7 +1,6 @@
 package com.appledeveloperacademy.soongies.domain.ytmusic.client;
 
 import com.appledeveloperacademy.soongies.config.FeignConfig;
-import com.appledeveloperacademy.soongies.domain.youtube.dto.YoutubeDataApiV3Response;
 import com.appledeveloperacademy.soongies.domain.ytmusic.dto.YTMusicApiRequest;
 import com.appledeveloperacademy.soongies.domain.ytmusic.dto.YTMusicApiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -22,7 +21,13 @@ public interface YTMusicApiClient {
     );
 
     @PostMapping(value = "/playlist")
-    public YTMusicApiResponse.YTMusicAPIExportPlaylistResponse exportPlaylist(
+    public YTMusicApiResponse.YTMusicApiExportPlaylistResponse exportPlaylist(
             @RequestBody YTMusicApiRequest.YTMusicAPiExportPlaylistRequest request
+    );
+
+    @PostMapping(value = "/update-tokens")
+    public YTMusicApiResponse.YTMusicApiUpdateTokensResponse updateToken(
+            @RequestParam("accessToken") String accessToken,
+            @RequestParam("refreshToken") String refreshToken
     );
 }
