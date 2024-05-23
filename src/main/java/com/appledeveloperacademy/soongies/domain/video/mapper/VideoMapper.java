@@ -21,9 +21,10 @@ public class VideoMapper {
                 .build();
     }
 
-    public VideoResponse.VideoCreatePlayListResponse toVideoCreatePlayListResponse(List<VideoResponse.VideoInfo> videoInfoList) {
+    public VideoResponse.VideoCreatePlayListResponse toVideoCreatePlayListResponse(Long playlistLength, List<VideoResponse.VideoInfo> videoInfoList) {
         return VideoResponse.VideoCreatePlayListResponse.builder()
                 .videoInfoList(videoInfoList)
+                .playlistLength(playlistLength)
                 .build();
     }
 
