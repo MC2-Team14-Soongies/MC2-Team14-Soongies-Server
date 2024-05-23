@@ -28,7 +28,7 @@ public class VideoMapper {
                 .build();
     }
 
-    public VideoResponse.VideoExportPlaylistResponse toVideoExportPlaylistResponse(YTMusicApiResponse.YTMusicAPIExportPlaylistResponse response) {
+    public VideoResponse.VideoExportPlaylistResponse toVideoExportPlaylistResponse(YTMusicApiResponse.YTMusicApiExportPlaylistResponse response) {
         return VideoResponse.VideoExportPlaylistResponse.builder()
                 .playlistId(response.getPlaylistId())
                 .build();

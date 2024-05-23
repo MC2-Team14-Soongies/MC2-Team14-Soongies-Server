@@ -144,7 +144,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public VideoResponse.VideoExportPlaylistResponse exportPlaylist(VideoRequest.VideoExportPlaylistRequest request) {
-        YTMusicApiResponse.YTMusicAPIExportPlaylistResponse response = ytMusicApiClient.exportPlaylist(ytMusicApiMapper.toYTMusicAPiExportPlaylistRequest(request));
+        YTMusicApiResponse.YTMusicApiExportPlaylistResponse response = ytMusicApiClient.exportPlaylist(ytMusicApiMapper.toYTMusicAPiExportPlaylistRequest(request));
         return videoMapper.toVideoExportPlaylistResponse(response);
     }
 

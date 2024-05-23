@@ -7,6 +7,7 @@ import com.appledeveloperacademy.soongies.config.security.oauth.google.dto.Googl
 import com.appledeveloperacademy.soongies.domain.member.dto.MemberRequest;
 import com.appledeveloperacademy.soongies.domain.member.dto.MemberResponse;
 import com.appledeveloperacademy.soongies.domain.member.mapper.MemberMapper;
+import com.appledeveloperacademy.soongies.domain.ytmusic.client.YTMusicApiClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService {
 
     private final GoogleClient googleClient;
+    private final YTMusicApiClient ytMusicApiClient;
     private final MemberMapper memberMapper;
     private final GoogleConfig googleConfig;
 
@@ -50,6 +52,8 @@ public class MemberServiceImpl implements MemberService {
         GoogleOauthResponse.GoogleOauthTokenResponse googleOauthToken = googleClient.getTokenInfo(googleOauthTokenRequest);
         System.out.println(googleOauthToken.getAccessToken());
         System.out.println(googleOauthToken.getRefreshToken());
+
+        System.out.println(ytMusicApiClient.updateToken(googleOauthToken.getAccessToken(), googleOauthToken.getRefreshToken()));
 
         return null;
     }
