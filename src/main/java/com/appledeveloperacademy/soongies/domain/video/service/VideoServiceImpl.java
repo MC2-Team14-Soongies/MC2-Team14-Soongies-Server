@@ -73,53 +73,62 @@ public class VideoServiceImpl implements VideoService {
         // 임시 리스트 생성
         List<VideoResponse.VideoInfo> videoInfoList = new ArrayList<>();
 
+        // --------------임시 search Setting-------------
         String part = "id";
         int maxResults = 20;
         String type = "video";
         int videoCategory = 10;
         String key = youtubeConfig.getApiKey();
         String order = "viewCount";
+        // ---------------------------------------------
 
-        YTMusicApiResponse.YTMusicApiGetSongResponse temp = ytMusicApiClient.getSong("WPdWvnAAurg");
-        System.out.println(temp);
-        System.out.println(temp.getVideoDetails().getVideoId());
-        System.out.println(temp.getVideoDetails().getAuthor());
-        System.out.println(temp.getVideoDetails().getLengthSeconds());
-        System.out.println(temp.getVideoDetails().getThumbnail().getThumbnails());
-        System.out.println(temp.getVideoDetails().getTitle());
-        System.out.println(temp.getVideoDetails().getViewCount());
+        Long restTime = request.getRestTime();
 
-//        YoutubeDataApiV3Response.YoutubeDataApiV3SearchListResponse youtubeDataApiV3SearchListResponse = youtubeClient.searchVideo(part, maxResults, request.getFinaleInfo().getArtist(), type, videoCategory, key, order);
-//
-//        youtubeDataApiV3SearchListResponse.getItems().forEach(searchListItem -> {
-//
-//            System.out.println("--------------------------------");
-//            // TODO: 각 비디오 ID 값에 대한 상세 정보 조회 및 리스트 (조회순) 정렬
-//            String videoId = searchListItem.getId().getVideoId();
-//            YoutubeDataApiV3Response.YoutubeDataApiV3VideoGetDetailResponse videoDetail = youtubeClient.getVideoDetail(videoId, "snippet,statistics,contentDetails", key);
-//            YoutubeDataApiV3Response.GetVideoDetailItem videoDetailItem = videoDetail.getItems().get(0);
-////                // TODO: Thumbnail이 null일 때 처리, 조회수 안불러와지는 오류 수정
-//            try {
-//                String json = objectMapper.writeValueAsString(videoDetail);
-//                logger.info("Object as JSON: {}", json);
-//            } catch (JsonProcessingException e) {
-//                logger.error("Error while converting object to JSON", e);
-//            }
-//            videoInfoList.add(videoMapper.toVideoInfo(videoDetailItem));
-//            System.out.println("--------------------------------");
-//        });
-//
-//        videoInfoList.forEach(item -> {
-//            System.out.println(item.getTitle());
-//            System.out.println(item.getArtist());
-//            System.out.println(item.getDuration());
-//            System.out.println(item.getThumbnail());
-//            System.out.println(item.getViewCount());
-//        });
+        YoutubeDataApiV3Response.YoutubeDataApiV3SearchListResponse youtubeDataApiV3SearchListResponse = youtubeClient.searchVideo(part, maxResults, request.getFinaleInfo().getArtist(), type, videoCategory, key, order);
+
+        for (YoutubeDataApiV3Response.SearchListItem searchListItem : youtubeDataApiV3SearchListResponse.getItems()) {
+
+            // 수정해야됨
+            YTMusicApiResponse.YTMusicApiGetSongResponse videoDetail = ytMusicApiClient.getSong(searchListItem.getId().getVideoId());
+            System.out.println(videoDetail);
+            System.out.println(videoDetail.getVideoDetails().getVideoId());
+            System.out.println(videoDetail.getVideoDetails().getAuthor());
+            System.out.println(videoDetail.getVideoDetails().getLengthSeconds());
+            System.out.println(videoDetail.getVideoDetails().getThumbnail().getThumbnails());
+            System.out.println(videoDetail.getVideoDetails().getTitle());
+            System.out.println(videoDetail.getVideoDetails().getViewCount());
+
+            try {
+                String json = objectMapper.writeValueAsString(videoDetail);
+                logger.info("Object as JSON: {}", json);
+            } catch (JsonProcessingException e) {
+                logger.error("Error while converting object to JSON", e);
+            }
+
+            Long videoLength = Long.parseLong(videoDetail.getVideoDetails().getLengthSeconds());
+            if(restTime - videoLength >= 0) {
+                restTime -= videoLength;
+                System.out.println("restTime : " + restTime);
+                System.out.println("videoLength : " + videoLength);
+                System.out.println("restTime - videoLength : " + (restTime - videoLength));
+                videoInfoList.add(videoMapper.toVideoInfo(videoDetail));
+            }
+
+        };
+
+        videoInfoList.forEach(item -> {
+            System.out.println(item.getTitle());
+            System.out.println(item.getArtist());
+            System.out.println(item.getDuration());
+            System.out.println(item.getThumbnail());
+            System.out.println(item.getViewCount());
+        });
 
         // ----------------------------------------
 
 
         return videoMapper.toVideoCreatePlayListResponse(videoInfoList);
     }
+
+
 }

@@ -12,7 +12,7 @@ public class VideoRequest {
     @NoArgsConstructor
     @Getter
     public static class VideoCreatePlayListRequest {
-        private String endTime;
+        private Long restTime;
         private CreatePlayListFinaleInfo finaleInfo;
     }
 
