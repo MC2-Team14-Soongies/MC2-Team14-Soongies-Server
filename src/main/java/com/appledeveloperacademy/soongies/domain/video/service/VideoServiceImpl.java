@@ -83,6 +83,7 @@ public class VideoServiceImpl implements VideoService {
         // ---------------------------------------------
 
         Long restTime = request.getRestTime();
+        Long playlistLength = 0L;
 
         YoutubeDataApiV3Response.YoutubeDataApiV3SearchListResponse youtubeDataApiV3SearchListResponse = youtubeClient.searchVideo(part, maxResults, request.getFinaleInfo().getArtist(), type, videoCategory, key, order);
 
@@ -112,6 +113,7 @@ public class VideoServiceImpl implements VideoService {
                 System.out.println("videoLength : " + videoLength);
                 System.out.println("restTime - videoLength : " + (restTime - videoLength));
                 videoInfoList.add(videoMapper.toVideoInfo(videoDetail));
+                playlistLength += videoLength;
             }
 
         };
@@ -127,7 +129,7 @@ public class VideoServiceImpl implements VideoService {
         // ----------------------------------------
 
 
-        return videoMapper.toVideoCreatePlayListResponse(videoInfoList);
+        return videoMapper.toVideoCreatePlayListResponse(playlistLength, videoInfoList);
     }
 
 

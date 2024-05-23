@@ -11,6 +11,7 @@ public class VideoResponse {
     @Builder
     public static class VideoCreatePlayListResponse {
         private List<VideoInfo> videoInfoList;
+        private Long playlistLength;
     }
 
     @Getter
