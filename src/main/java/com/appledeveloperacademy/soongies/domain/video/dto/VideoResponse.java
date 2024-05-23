@@ -9,7 +9,7 @@ public class VideoResponse {
 
     @Getter
     @Builder
-    public static class VideoCreatePlayListResponse {
+    public static class VideoCreatePlaylistResponse {
         private List<VideoInfo> videoInfoList;
         private Long playlistLength;
     }
@@ -30,5 +30,13 @@ public class VideoResponse {
         private String duration;
         private Long viewCount;
     }
+
+    @Getter
+    @Builder
+    public static class VideoExportPlaylistResponse {
+        private String playlistId;
+    }
+
+
 
 }

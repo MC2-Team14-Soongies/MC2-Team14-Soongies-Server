@@ -8,6 +8,7 @@ import com.appledeveloperacademy.soongies.domain.video.dto.VideoResponse;
 import com.appledeveloperacademy.soongies.domain.video.mapper.VideoMapper;
 import com.appledeveloperacademy.soongies.domain.ytmusic.client.YTMusicApiClient;
 import com.appledeveloperacademy.soongies.domain.ytmusic.dto.YTMusicApiResponse;
+import com.appledeveloperacademy.soongies.domain.ytmusic.mapper.YTMusicApiMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ public class VideoServiceImpl implements VideoService {
     private final YoutubeConfig youtubeConfig;
     private final VideoMapper videoMapper;
     private final YTMusicApiClient ytMusicApiClient;
+    private final YTMusicApiMapper ytMusicApiMapper;
 
     @Override
     public VideoResponse.VideoSearchListResponse searchVideo(String part, int maxResults, String q, String type, int videoCategory, String key, String order) {
@@ -68,7 +70,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public VideoResponse.VideoCreatePlayListResponse createPlayList(VideoRequest.VideoCreatePlayListRequest request) {
+    public VideoResponse.VideoCreatePlaylistResponse createPlayList(VideoRequest.VideoCreatePlaylistRequest request) {
 
         // 임시 리스트 생성
         List<VideoResponse.VideoInfo> videoInfoList = new ArrayList<>();
@@ -82,7 +84,7 @@ public class VideoServiceImpl implements VideoService {
         String order = "viewCount";
         // ---------------------------------------------
 
-        Long restTime = request.getRestTime();
+        Long restTime = request.getRestTime() - request.getFinaleInfo().getLength();
         Long playlistLength = 0L;
 
         YoutubeDataApiV3Response.YoutubeDataApiV3SearchListResponse youtubeDataApiV3SearchListResponse = youtubeClient.searchVideo(part, maxResults, request.getFinaleInfo().getArtist(), type, videoCategory, key, order);
@@ -107,7 +109,7 @@ public class VideoServiceImpl implements VideoService {
             }
 
             Long videoLength = Long.parseLong(videoDetail.getVideoDetails().getLengthSeconds());
-            if(restTime - videoLength >= 0) {
+            if(restTime - videoLength >= 0 && videoLength >= 120) {
                 restTime -= videoLength;
                 System.out.println("restTime : " + restTime);
                 System.out.println("videoLength : " + videoLength);
@@ -115,10 +117,14 @@ public class VideoServiceImpl implements VideoService {
                 videoInfoList.add(videoMapper.toVideoInfo(videoDetail));
                 playlistLength += videoLength;
             }
-
         };
 
+        videoInfoList.add(videoMapper.toVideoInfo(request.getFinaleInfo()));
+        playlistLength += request.getFinaleInfo().getLength();
+
+
         videoInfoList.forEach(item -> {
+            System.out.println(item.getVideoId());
             System.out.println(item.getTitle());
             System.out.println(item.getArtist());
             System.out.println(item.getDuration());
@@ -130,6 +136,12 @@ public class VideoServiceImpl implements VideoService {
 
 
         return videoMapper.toVideoCreatePlayListResponse(playlistLength, videoInfoList);
+    }
+
+    @Override
+    public VideoResponse.VideoExportPlaylistResponse exportPlaylist(VideoRequest.VideoExportPlaylistRequest request) {
+        YTMusicApiResponse.YTMusicAPIExportPlaylistResponse response = ytMusicApiClient.exportPlaylist(ytMusicApiMapper.toYTMusicAPiExportPlaylistRequest(request));
+        return videoMapper.toVideoExportPlaylistResponse(response);
     }
 
 

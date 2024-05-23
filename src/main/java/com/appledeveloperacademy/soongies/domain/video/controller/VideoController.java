@@ -41,11 +41,20 @@ public class VideoController {
 
     @Operation(summary = "플레이리스트 생성 API", description = "플레이리스트를 생성합니다.")
     @PostMapping("/playlist")
-    private BaseResponse<VideoResponse.VideoCreatePlayListResponse> createPlayList(
-            @RequestBody VideoRequest.VideoCreatePlayListRequest request
+    private BaseResponse<VideoResponse.VideoCreatePlaylistResponse> createPlayList(
+            @RequestBody VideoRequest.VideoCreatePlaylistRequest request
     ) {
 
         return BaseResponse.onSuccess(videoService.createPlayList(request));
+    }
+
+    @Operation(summary = "플레이리스트 들으러가기 API", description = "플레이리스트 들으러가기 API 입니다.")
+    @PostMapping("/playlist/export")
+    private BaseResponse<VideoResponse.VideoExportPlaylistResponse> exportPlaylist(
+            @RequestBody VideoRequest.VideoExportPlaylistRequest request
+    ) {
+
+        return BaseResponse.onSuccess((videoService.exportPlaylist(request)));
     }
 
 }
