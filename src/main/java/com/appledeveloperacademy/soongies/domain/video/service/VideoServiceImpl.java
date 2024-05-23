@@ -110,7 +110,7 @@ public class VideoServiceImpl implements VideoService {
             }
 
             Long videoLength = Long.parseLong(videoDetail.getVideoDetails().getLengthSeconds());
-            if(videoDetail.getVideoDetails().getVideoId() != request.getFinaleInfo().getVideoId()) {
+            if(!videoDetail.getVideoDetails().getVideoId().equals(request.getFinaleInfo().getVideoId())) {
                 if(restTime - videoLength >= 0 && videoLength >= 120) {
                     restTime -= videoLength;
                     System.out.println("restTime : " + restTime);
