@@ -27,7 +27,6 @@ public interface YTMusicApiClient {
 
     @PostMapping(value = "/update-tokens")
     public YTMusicApiResponse.YTMusicApiUpdateTokensResponse updateToken(
-            @RequestParam("accessToken") String accessToken,
-            @RequestParam("refreshToken") String refreshToken
+            @RequestParam("accessToken") String accessToken
     );
 }
