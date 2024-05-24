@@ -53,7 +53,7 @@ public class MemberServiceImpl implements MemberService {
         System.out.println(googleOauthToken.getAccessToken());
         System.out.println(googleOauthToken.getRefreshToken());
 
-        System.out.println(ytMusicApiClient.updateToken(googleOauthToken.getAccessToken(), googleOauthToken.getRefreshToken()));
+        System.out.println(ytMusicApiClient.updateToken(googleOauthToken.getAccessToken()));
 
         return null;
     }
